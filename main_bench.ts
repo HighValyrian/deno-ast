@@ -1,0 +1,1 @@
+// deno bench 基准测试
