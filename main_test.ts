@@ -1,3 +1,4 @@
+import { Parser } from "./src/Parser.ts";
 import { Tokenizer } from "./src/Tokenizer.ts";
 
 const program = `
@@ -14,8 +15,13 @@ const program = `
 `;
 
 Deno.test(function tokenizerTest() {
-  const tokenizer = new Tokenizer(program);
+  const tokenizer = new Tokenizer();
+  tokenizer.import(program)
   while(tokenizer.hasMoreTokens()) {
     console.log(tokenizer.getNextToken())
   }
+});
+
+Deno.test(function parserTest() {
+  const parser = new Parser()
 });

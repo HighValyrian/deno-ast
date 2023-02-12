@@ -94,9 +94,15 @@ const Spec = [
   [/^'[^']*'/, "STRING"],
 ];
 
+export type Token = {type:string|RegExp,value:string}
+
 export class Tokenizer {
   private cursor = 0;
-  constructor(readonly string: string) {}
+  private string = "";
+
+  import(program:string) {
+    this.string = program
+  }
 
   isEOF() {
     return this.cursor === this.string.length;
@@ -107,8 +113,7 @@ export class Tokenizer {
     return this.cursor < this.string.length;
   }
 
-  // deno-lint-ignore ban-types
-  getNextToken():null|object {
+  getNextToken():Token | null {
     if (!this.hasMoreTokens()) {
       return null;
     }
