@@ -44,7 +44,7 @@ const Spec = [
   [/^\bwhile\b/, "while"],
   [/^\bdo\b/, "do"],
   [/^\bfor\b/, "for"],
-  [/^\bdef\b/, "def"],
+  [/^\bfun\b/, "fun"],
   [/^\breturn\b/, "return"],
   [/^\bclass\b/, "class"],
   [/^\bextends\b/, "extends"],
@@ -97,22 +97,26 @@ const Spec = [
 export type Token = {type:string|RegExp,value:string}
 
 export class Tokenizer {
-  private cursor = 0;
+  private cursor = 0; // 当前索引位置
   private string = "";
 
+  // 导入字符串
   import(program:string) {
     this.string = program
   }
-
+  
+  //判断是否结束
   isEOF() {
     return this.cursor === this.string.length;
   }
 
+  // 判断是否还有token
   hasMoreTokens() {
     // 光标指向当前未处理的字符。所以最大值是this.string length - 1
     return this.cursor < this.string.length;
   }
 
+  // 获取下一个token
   getNextToken():Token | null {
     if (!this.hasMoreTokens()) {
       return null;

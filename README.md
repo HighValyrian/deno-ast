@@ -6,11 +6,17 @@
 
 ### test tokenizer
 
+```bash
 deno test --filter "tokenizerTest"
+```
 
+### rest parser
 
+```bash
+deno test --filter "parserTest"
+```
 
 ## 感谢
 
-[rdp](https://github.com/AttackOnMorty/rdp)
-[https://esprima.org](https://esprima.org/demo/parse.html)
+- [rdp](https://github.com/AttackOnMorty/rdp)
+- [https://esprima.org](https://esprima.org/demo/parse.html)
